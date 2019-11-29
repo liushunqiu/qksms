@@ -19,7 +19,7 @@
 package com.moez.QKSMS.common
 
 import android.app.Activity
-import android.app.role.RoleManager
+/*import android.app.role.RoleManager*/
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -84,15 +84,15 @@ class Navigator @Inject constructor(
      * This won't work unless we use startActivityForResult
      */
     fun showDefaultSmsDialog(context: Activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val roleManager = context.getSystemService(RoleManager::class.java) as RoleManager
             val intent = roleManager.createRequestRoleIntent(RoleManager.ROLE_SMS)
             context.startActivityForResult(intent, 42389)
-        } else {
+        } else {*/
             val intent = Intent(Telephony.Sms.Intents.ACTION_CHANGE_DEFAULT)
             intent.putExtra(Telephony.Sms.Intents.EXTRA_PACKAGE_NAME, context.packageName)
             context.startActivity(intent)
-        }
+        //}
     }
 
     fun showCompose(body: String? = null, images: List<Uri>? = null) {
@@ -227,14 +227,14 @@ class Navigator @Inject constructor(
         startActivityExternal(intent)
     }
 
-    fun showInvite() {
+    /*fun showInvite() {
         analyticsManager.track("Clicked Invite")
         Intent(Intent.ACTION_SEND)
                 .setType("text/plain")
                 .putExtra(Intent.EXTRA_TEXT, "http://qklabs.com/download")
                 .let { Intent.createChooser(it, null) }
                 .let(::startActivityExternal)
-    }
+    }*/
 
     fun addContact(address: String) {
         val uri = Uri.parse("tel: $address")

@@ -21,7 +21,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
     publishNonDefault true
     flavorDimensions "analytics"
 
@@ -43,6 +43,7 @@ android {
         withAnalytics { dimension "analytics" }
         noAnalytics { dimension "analytics" }
     }
+    buildToolsVersion = '28.0.3'
 }
 
 dependencies {

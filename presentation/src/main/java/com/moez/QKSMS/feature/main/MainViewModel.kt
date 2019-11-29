@@ -232,9 +232,9 @@ class MainViewModel @Inject constructor(
                         NavItem.SCHEDULED -> navigator.showScheduled()
                         NavItem.BLOCKING -> navigator.showBlockedConversations()
                         NavItem.SETTINGS -> navigator.showSettings()
-                        NavItem.PLUS -> navigator.showQksmsPlusActivity("main_menu")
+                        /*NavItem.PLUS -> navigator.showQksmsPlusActivity("main_menu")
                         NavItem.HELP -> navigator.showSupport()
-                        NavItem.INVITE -> navigator.showInvite()
+                        NavItem.INVITE -> navigator.showInvite()*/
                         else -> Unit
                     }
                     drawerItem
@@ -338,13 +338,13 @@ class MainViewModel @Inject constructor(
                 .autoDisposable(view.scope())
                 .subscribe()
 
+        /*todo 临时
         view.plusBannerIntent
                 .autoDisposable(view.scope())
                 .subscribe {
                     newState { copy(drawerOpen = false) }
                     navigator.showQksmsPlusActivity("main_banner")
                 }
-
         view.rateIntent
                 .autoDisposable(view.scope())
                 .subscribe {
@@ -354,7 +354,7 @@ class MainViewModel @Inject constructor(
 
         view.dismissRatingIntent
                 .autoDisposable(view.scope())
-                .subscribe { ratingManager.dismiss() }
+                .subscribe { ratingManager.dismiss() }*/
 
         view.conversationsSelectedIntent
                 .withLatestFrom(state) { selection, state ->

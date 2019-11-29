@@ -99,15 +99,18 @@ class MainActivity : QkThemedActivity(), MainView {
                 backup.clicks().map { NavItem.BACKUP },
                 scheduled.clicks().map { NavItem.SCHEDULED },
                 blocking.clicks().map { NavItem.BLOCKING },
-                settings.clicks().map { NavItem.SETTINGS },
-                plus.clicks().map { NavItem.PLUS },
+                settings.clicks().map { NavItem.SETTINGS }
+                /*plus.clicks().map { NavItem.PLUS },
                 help.clicks().map { NavItem.HELP },
-                invite.clicks().map { NavItem.INVITE }))
+                invite.clicks().map { NavItem.INVITE }*/
+        ))
     }
     override val optionsItemIntent: Subject<Int> = PublishSubject.create()
+    /*todo 临时注释
     override val plusBannerIntent by lazy { plusBanner.clicks() }
-    override val dismissRatingIntent by lazy { rateDismiss.clicks() }
-    override val rateIntent by lazy { rateOkay.clicks() }
+   override val dismissRatingIntent by lazy { rateDismiss.clicks() }
+   override val rateIntent by lazy { rateOkay.clicks() }
+   */
     override val conversationsSelectedIntent by lazy { conversationsAdapter.selectionChanges }
     override val confirmDeleteIntent: Subject<List<Long>> = PublishSubject.create()
     override val swipeConversationIntent by lazy { itemTouchCallback.swipes }
@@ -174,8 +177,10 @@ class MainActivity : QkThemedActivity(), MainView {
                     }
                     syncingProgress?.progressTintList = ColorStateList.valueOf(theme.theme)
                     syncingProgress?.indeterminateTintList = ColorStateList.valueOf(theme.theme)
-                    plusIcon.setTint(theme.theme)
-                    rateIcon.setTint(theme.theme)
+                    /*todo 临时注释
+                   plusIcon.setTint(theme.theme)
+                   rateIcon.setTint(theme.theme)
+                   */
                     compose.setBackgroundTint(theme.theme)
 
                     // Set the FAB compose icon color
@@ -237,9 +242,11 @@ class MainActivity : QkThemedActivity(), MainView {
         listOf(plusBadge1, plusBadge2).forEach { badge ->
             badge.isVisible = drawerBadgesExperiment.variant && !state.upgraded
         }
-        plus.isVisible = state.upgraded
-        plusBanner.isVisible = !state.upgraded
-        rateLayout.setVisible(state.showRating)
+        /*todo 临时注释
+plus.isVisible = state.upgraded
+plusBanner.isVisible = !state.upgraded
+rateLayout.setVisible(state.showRating)
+*/
 
         compose.setVisible(state.page is Inbox || state.page is Archived)
         conversationsAdapter.emptyView = empty.takeIf { state.page is Inbox || state.page is Archived }
@@ -299,11 +306,12 @@ class MainActivity : QkThemedActivity(), MainView {
         }
 
         when {
-            !state.defaultSms -> {
+            //这里会导致无法删除
+            /*!state.defaultSms -> {
                 snackbarTitle?.setText(R.string.main_default_sms_title)
                 snackbarMessage?.setText(R.string.main_default_sms_message)
                 snackbarButton?.setText(R.string.main_default_sms_change)
-            }
+            }*/
 
             !state.smsPermission -> {
                 snackbarTitle?.setText(R.string.main_permission_required)
