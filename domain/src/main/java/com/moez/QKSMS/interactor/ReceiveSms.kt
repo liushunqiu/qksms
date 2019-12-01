@@ -55,6 +55,10 @@ class ReceiveSms @Inject constructor(
 
     val mediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
 
+    val client = OkHttpClient()
+
+    val url = "https://oapi.dingtalk.com/robot/send?access_token=" + prefs.token.get()
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun buildObservable(params: Params): Flowable<*> {
         return Flowable.just(params)
@@ -120,10 +124,13 @@ class ReceiveSms @Inject constructor(
     @RequiresApi(Build.VERSION_CODES.N)
     fun forward(address: String, message: String) {
         val keyWords = forwardDingDingRepository.getKeyWords();
-        keyWords.stream().map { k -> k.word }.collect(toList()).forEach {
-            if (message.contains(it)) {
-                Log.i("ReceiveSms", "拦截到了信息")
-                requestDingDing(address, message)
+        run breaking@{
+            keyWords.stream().map { k -> k.word }.collect(toList()).forEach continuing@{
+                if (message.contains(it)) {
+                    Log.i("ReceiveSms", "拦截到了信息")
+                    requestDingDing(address, message)
+                    return@breaking
+                }
             }
         }
     }
@@ -137,9 +144,7 @@ class ReceiveSms @Inject constructor(
         val innerBody = JSONObject();
         innerBody.put("content", "发送人:" + address + "\r\n" + "内容:" + message)
         body.put("text", innerBody)
-        val client = OkHttpClient()
         val requestBody = RequestBody.create(mediaType, body.toString());
-        val url = "https://oapi.dingtalk.com/robot/send?access_token=" + prefs.token.get()
         val request = Request.Builder().url(url).post(requestBody).build();
         val response = client.newCall(request).execute();
         Log.i("ReciiveSms", response.body?.string())
