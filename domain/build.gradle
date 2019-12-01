@@ -63,6 +63,7 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$timber_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation project(":common")
+    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
 }
 
 repositories {

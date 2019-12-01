@@ -50,7 +50,7 @@ class ForwardDingDingRepositoryImpl @Inject constructor() : ForwardDingDingRepos
     override fun getKeyWords(): RealmResults<Keywords> {
         return Realm.getDefaultInstance()
                 .where(Keywords::class.java)
-                .findAllAsync()
+                .findAll()
     }
 
 }
