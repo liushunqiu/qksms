@@ -75,6 +75,10 @@ class BlockingPresenter @Inject constructor(
         view.dropClickedIntent
                 .autoDisposable(view.scope())
                 .subscribe { prefs.drop.set(!prefs.drop.get()) }
+        //钉钉
+        view.forwardDingDingIntent
+                .autoDisposable(view.scope())
+                .subscribe { view.openForwardDingDing() }
     }
 
 }

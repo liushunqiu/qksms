@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2019 Moez Bhatti <moez.bhatti@gmail.com>
+  ~ Copyright (C) 2017 Moez Bhatti <moez.bhatti@gmail.com>
   ~
   ~ This file is part of QKSMS.
   ~
@@ -19,51 +19,34 @@
   -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/windowBackground"
-    android:clipToPadding="false">
+    android:background="?android:attr/windowBackground">
 
     <LinearLayout
-        android:id="@+id/parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp">
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
 
         <com.moez.QKSMS.common.widget.PreferenceView
-            android:id="@+id/blockingManager"
+            android:id="@+id/switchDingDing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/blocking_manager_title"
-            tools:summary="@string/blocking_manager_qksms_title" />
-
-        <com.moez.QKSMS.common.widget.PreferenceView
-            android:id="@+id/blockedNumbers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:title="@string/blocked_numbers_title" />
-
-        <com.moez.QKSMS.common.widget.PreferenceView
-            android:id="@+id/drop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:summary="@string/blocking_drop_summary"
-            app:title="@string/blocking_drop_title"
+            app:title="是否转发"
             app:widget="@layout/settings_switch_widget" />
-
         <com.moez.QKSMS.common.widget.PreferenceView
-            android:id="@+id/blockedMessages"
+            android:id="@+id/filterKeyWords"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/blocked_messages_title" />
+            app:title="拦截关键词" />
         <com.moez.QKSMS.common.widget.PreferenceView
-            android:id="@+id/forwardDingDing"
+            android:id="@+id/token"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="转发至钉钉" />
+            app:icon="@drawable/ic_short_text_black_24dp"
+            app:title="机器人Token" />
     </LinearLayout>
 
 </ScrollView>

@@ -103,6 +103,9 @@ class Preferences @Inject constructor(context: Context, private val rxPrefs: RxS
     val mobileOnly = rxPrefs.getBoolean("mobileOnly", false)
     val mmsSize = rxPrefs.getInteger("mmsSize", 300)
     val logging = rxPrefs.getBoolean("logging", false)
+    //钉钉
+    val switch = rxPrefs.getBoolean("dingdingSwitch", false)
+    val token = rxPrefs.getString("dingdingToken", "")
 
     init {
         // Migrate from old night mode preference to new one, now that we support android Q night mode

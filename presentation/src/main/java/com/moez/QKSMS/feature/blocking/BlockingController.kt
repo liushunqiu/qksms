@@ -26,6 +26,7 @@ import com.moez.QKSMS.common.QkChangeHandler
 import com.moez.QKSMS.common.base.QkController
 import com.moez.QKSMS.common.util.Colors
 import com.moez.QKSMS.common.util.extensions.animateLayoutChanges
+import com.moez.QKSMS.feature.blocking.dingding.ForwardDingDingController
 import com.moez.QKSMS.feature.blocking.manager.BlockingManagerController
 import com.moez.QKSMS.feature.blocking.messages.BlockedMessagesController
 import com.moez.QKSMS.feature.blocking.numbers.BlockedNumbersController
@@ -40,9 +41,13 @@ class BlockingController : QkController<BlockingView, BlockingState, BlockingPre
     override val blockedNumbersIntent by lazy { blockedNumbers.clicks() }
     override val blockedMessagesIntent by lazy { blockedMessages.clicks() }
     override val dropClickedIntent by lazy { drop.clicks() }
+    //钉钉
+    override val forwardDingDingIntent by lazy { forwardDingDing.clicks() }
 
-    @Inject lateinit var colors: Colors
-    @Inject override lateinit var presenter: BlockingPresenter
+    @Inject
+    lateinit var colors: Colors
+    @Inject
+    override lateinit var presenter: BlockingPresenter
 
     init {
         appComponent.inject(this)
@@ -85,5 +90,10 @@ class BlockingController : QkController<BlockingView, BlockingState, BlockingPre
                 .pushChangeHandler(QkChangeHandler())
                 .popChangeHandler(QkChangeHandler()))
     }
-
+    //钉钉
+    override fun openForwardDingDing() {
+        router.pushController(RouterTransaction.with(ForwardDingDingController())
+                .pushChangeHandler(QkChangeHandler())
+                .popChangeHandler(QkChangeHandler()))
+    }
 }

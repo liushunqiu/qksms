@@ -61,22 +61,7 @@ import com.moez.QKSMS.mapper.CursorToPartImpl
 import com.moez.QKSMS.mapper.CursorToRecipient
 import com.moez.QKSMS.mapper.CursorToRecipientImpl
 import com.moez.QKSMS.mapper.RatingManagerImpl
-import com.moez.QKSMS.repository.BackupRepository
-import com.moez.QKSMS.repository.BackupRepositoryImpl
-import com.moez.QKSMS.repository.BlockingRepository
-import com.moez.QKSMS.repository.BlockingRepositoryImpl
-import com.moez.QKSMS.repository.ContactRepository
-import com.moez.QKSMS.repository.ContactRepositoryImpl
-import com.moez.QKSMS.repository.ConversationRepository
-import com.moez.QKSMS.repository.ConversationRepositoryImpl
-import com.moez.QKSMS.repository.ImageRepository
-import com.moez.QKSMS.repository.ImageRepositoryImpl
-import com.moez.QKSMS.repository.MessageRepository
-import com.moez.QKSMS.repository.MessageRepositoryImpl
-import com.moez.QKSMS.repository.ScheduledMessageRepository
-import com.moez.QKSMS.repository.ScheduledMessageRepositoryImpl
-import com.moez.QKSMS.repository.SyncRepository
-import com.moez.QKSMS.repository.SyncRepositoryImpl
+import com.moez.QKSMS.repository.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -195,5 +180,9 @@ class AppModule(private var application: Application) {
 
     @Provides
     fun provideSyncRepository(repository: SyncRepositoryImpl): SyncRepository = repository
+    //钉钉
+    @Provides
+    fun provideForwardDingDingRepository(repository: ForwardDingDingRepositoryImpl): ForwardDingDingRepository = repository
+
 
 }

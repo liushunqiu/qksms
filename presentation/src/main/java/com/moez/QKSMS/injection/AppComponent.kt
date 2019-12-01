@@ -30,6 +30,8 @@ import com.moez.QKSMS.common.widget.QkTextView
 import com.moez.QKSMS.common.widget.RadioPreferenceView
 import com.moez.QKSMS.feature.backup.BackupController
 import com.moez.QKSMS.feature.blocking.BlockingController
+import com.moez.QKSMS.feature.blocking.dingding.ForwardDingDingController
+import com.moez.QKSMS.feature.blocking.dingding.filter.FilterKeywordsController
 import com.moez.QKSMS.feature.blocking.manager.BlockingManagerController
 import com.moez.QKSMS.feature.blocking.messages.BlockedMessagesController
 import com.moez.QKSMS.feature.blocking.numbers.BlockedNumbersController
@@ -70,6 +72,10 @@ interface AppComponent {
     fun inject(controller: BlockingManagerController)
     fun inject(controller: SettingsController)
     fun inject(controller: SwipeActionsController)
+    //钉钉
+    fun inject(controller: ForwardDingDingController)
+    //拦截
+    fun inject(controller: FilterKeywordsController)
 
     fun inject(dialog: QkDialog)
 
